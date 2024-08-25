@@ -48,7 +48,7 @@ def main(csv_file):
     else:
         output_df = pd.DataFrame({'prediction': y_pred})
     
-    output_file = 'predictions.csv'
+    output_file = 'Fase-2/predictions.csv'
     output_df.to_csv(output_file, index=False)
     print(f'Predicciones guardadas en {output_file}')
 
