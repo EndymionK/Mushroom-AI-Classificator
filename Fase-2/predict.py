@@ -23,7 +23,7 @@ def preprocess_data(df, categorical_columns):
 
 def main(csv_file):
     # Cargar el modelo
-    model_path = './Fase-2/xgb_model_20240824_1820.joblib'
+    model_path = './Fase-2/xgb_model.joblib'
     model = joblib.load(model_path) 
 
     # Leer el archivo CSV
