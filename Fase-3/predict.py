@@ -1,9 +1,8 @@
-import argparse
 import pandas as pd
 import joblib
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.impute import KNNImputer
-import os
+import io
 
 def knn_impute(df, n_neighbors=5):
     df_encoded = df.copy()
@@ -22,17 +21,10 @@ def preprocess_data(df, categorical_columns):
     df_imputed[categorical_columns] = ordinal_encoder.fit_transform(df_imputed[categorical_columns].astype(str))
     return df_imputed
 
-def main(csv_file):
-    # Obtener la ruta del directorio actual
-    current_directory = os.getcwd()
+def predict_model(df: pd.DataFrame, model_content: bytes) -> str:
+    # Cargar el modelo desde el contenido binario
+    model = joblib.load(io.BytesIO(model_content))
     
-    # Cargar el modelo
-    model_path = os.path.join(current_directory, 'xgb_model.joblib')
-    model = joblib.load(model_path)
-
-    # Leer el archivo CSV
-    df = pd.read_csv(os.path.join(current_directory, csv_file))
-
     # Eliminar la columna 'id' si existe y almacenar 'id' para el archivo de salida
     id_column = None
     if 'id' in df.columns:
@@ -52,12 +44,6 @@ def main(csv_file):
     else:
         output_df = pd.DataFrame({'prediction': y_pred})
     
-    output_file = os.path.join(current_directory, 'predictions.csv')
-    output_df.to_csv(output_file, index=False)
-    print(f'Predicciones guardadas en {output_file}')
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Predicción usando un modelo previamente almacenado.')
-    parser.add_argument('csv_file', type=str, help='Nombre del archivo CSV de entrada.')
-    args = parser.parse_args()
-    main(args.csv_file)
+    # Convertir el DataFrame a CSV y retornarlo como string
+    output_csv = output_df.to_csv(index=False)
+    return output_csv
