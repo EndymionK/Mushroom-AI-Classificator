@@ -4,7 +4,7 @@ Proyecto de la materia Introducción a la Inteligencia Artificial de la Universi
 
 ## Miembros del equipo
 
-- [Juan Camilo Avendaño Rodriguez] (https://github.com/camilo-avendano1) 1193585383
+- [Juan Camilo Avendaño Rodriguez](https://github.com/camilo-avendano1) 1193585383
 - [Andres Arroyave Carmona](https://github.com/EndymionK) 1001011039
 
 ## Sobre los datos
