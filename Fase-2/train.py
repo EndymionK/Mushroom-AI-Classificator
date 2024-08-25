@@ -8,12 +8,15 @@ from xgboost import XGBClassifier
 import joblib
 from datetime import datetime
 import os
+import argparse
 
-# Solicitar la ruta del archivo de entrenamiento
-train_csv_path = input("Por favor, introduce la ruta del archivo train.csv: ")
+# Configurar el manejo de argumentos de línea de comandos
+parser = argparse.ArgumentParser(description='Entrena un modelo XGBoost usando el archivo CSV proporcionado.')
+parser.add_argument('train_csv_path', type=str, help='Ruta del archivo CSV de entrenamiento')
+args = parser.parse_args()
 
 # Cargar el dataset de entrenamiento
-df_train = pd.read_csv(train_csv_path)
+df_train = pd.read_csv(args.train_csv_path)
 
 # Eliminar la columna 'id'
 df_train = df_train.drop(columns=['id'])
@@ -69,8 +72,7 @@ model = XGBClassifier(
 XGB = model.fit(train_X, train_y, eval_set=[(test_X, test_y)], verbose=False)
 
 # Guardar el modelo entrenado en la misma carpeta que el archivo de entrenamiento
-output_dir = os.path.dirname(train_csv_path)
-timestamp = datetime.now().strftime('%Y%m%d_%H%M')
+output_dir = os.path.dirname(args.train_csv_path)
 model_filename = os.path.join(output_dir, f'Fase-2/xgb_model.joblib')
 joblib.dump(XGB, model_filename)
 
