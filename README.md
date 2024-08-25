@@ -1,13 +1,13 @@
 # Mushroom-AI-Classificator
 
-Despliegue de modelos de aprendizaje ml en el curso de introducción a la ia
+Proyecto de la materia Introducción a la Inteligencia Artificial de la Universidad UdeA, en el cual se busca generar un modelo de clasificación de hongos venenosos y no venenosos, dockerizando el modelo, desplegandolo en un contenedor de Docker y exponiendolo a través de una API REST.
 
-## Group Members
+## Miembros del equipo
 
-- Juan Camilo Avendaño Rodriguez 1193585383
-- Andres Arroyave Carmona 1001011039
+- [Juan Camilo Avendaño Rodriguez] (https://github.com/camilo-avendano1) 1193585383
+- [Andres Arroyave Carmona](https://github.com/EndymionK) 1001011039
 
-## About the Data
+## Sobre los datos
 
 La data utilizada para este proyecto hace parte del concurso de kaggle [Binary Prediction of Poisonous Mushrooms](https://www.kaggle.com/competitions/playground-series-s4e8).
 
